@@ -10,7 +10,7 @@ import "swiper/css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({ blogs }) {
+export default function Home({ blogs }: { blogs: any[] }) {
   return (
     <main
       className={`flex h-full w-full min-h-screen flex-col items-center justify-between ${inter.className}`}
@@ -24,7 +24,7 @@ export default function Home({ blogs }) {
           className="w-full"
           pagination={{ clickable: true }}
         >
-          {blogs.map((blog) => (
+          {blogs.map((blog: any) => (
             <SwiperSlide key={blog.sys.id}>
               <div className="relative w-full h-[calc(100vh-5rem)] flex items-center justify-center">
                 <Image
@@ -48,7 +48,7 @@ export default function Home({ blogs }) {
         </Swiper>
       </section>
       <section className="flex w-full justify-between items-center h-full scroll">
-            
+
       </section>
     </main>
   );
@@ -56,8 +56,8 @@ export default function Home({ blogs }) {
 
 export async function getStaticProps() {
   const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID,
-    accessToken: process.env.CONTENTFUL_ACCESS_KEY,
+    space: process.env.CONTENTFUL_SPACE_ID ?? "",
+    accessToken: process.env.CONTENTFUL_ACCESS_KEY ?? "",
   });
 
   const res = await client.getEntries({ content_type: "blogs" });

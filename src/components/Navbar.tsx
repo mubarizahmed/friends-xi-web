@@ -10,7 +10,9 @@ const Navbar = () => {
 
   const goToContact = () => {
     const contactElement = document.getElementById('contact');
-    contactElement.scrollIntoView({ behavior: 'smooth' });
+    if (contactElement) {
+      contactElement.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   return (
