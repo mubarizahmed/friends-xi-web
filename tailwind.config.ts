@@ -8,10 +8,19 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        fxiblue: "#2D377D",
+        fxired: "#9C1521",
+        fxiorange: "#E26526",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+        header: ["Montserrat","sans-serif"],
       },
     },
   },

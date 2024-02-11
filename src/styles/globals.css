@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -16,6 +18,16 @@
   }
 }
 
+.bg-gradient {
+  background-color: #f4e0c5;
+  background-image: linear-gradient(
+    62deg,
+    #f4e0c5 0%,
+    #c5b4fc 51%,
+    #f4e7e7 100%
+  );
+  background-blend-mode: darken;
+}
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -24,10 +36,42 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  @apply bg-gradient;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.bg-blur{
+  background: rgba( 255, 255, 255, 0.25 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 5px );
+-webkit-backdrop-filter: blur( 5px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+
+/* Works on Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color:  #E26526 transparent;
+	/* scrollbar-gutter: stable; */
+}
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+	width: 0.75rem;
+}
+*::-webkit-scrollbar-track {
+	background: #0d0c1eff;
+	@apply bg-transparent;
+}
+*::-webkit-scrollbar-thumb {
+	background-color: white;
+	border-radius: 20px;
+	border: 3px solid #201e3cff;
+	@apply bg-fxiorange border-white;
 }
