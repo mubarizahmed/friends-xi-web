@@ -6,7 +6,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <div className="absolute w-screen h-screen overflow-hidden">
       <Navbar />
-      <div className="absolute w-screen h-screen overflow-scroll">
+      <div className="absolute w-screen h-screen snap-y overflow-scroll">
       <Component {...pageProps}/>
       </div>
     </div>
