@@ -48,8 +48,8 @@ export default function Home({ blogs }: { blogs: any[] }) {
           ))}
         </Swiper>
       </section>
-      <section className="flex w-full p-8 justify-between items-center h-full scroll">
-        <div className="w-full h-full p-20 relative">
+      <section className="flex w-full p-8 px-20 justify-between items-center h-full scroll">
+        <div className="w-full h-full py-20 relative">
           <Image
             src="/logo.png"
             alt="Friends XI logo"
@@ -61,9 +61,10 @@ export default function Home({ blogs }: { blogs: any[] }) {
         <div className="w-full h-[calc(100vh-5rem)] snap-top flex gap-4 flex-col items-start justify-center">
           <h1 className="text-5xl font-bold text-fxired">We are Friends XI!</h1>
           <p className="text-l text-fxiblue text-justify">
-            Welcome to the official website of Friends XI e.V., Bochum's premier
+            Welcome to the official website of Friends XI e.V., Bochum&rsquo;s premier
             cricket team and a proud member of the Deutsche Cricket Union (DCU).
-            
+          </p>
+          <p className="text-l text-fxiblue text-justify">
             Born from a passion for the game and a deep sense of camaraderie, we
             are a team that has not only achieved considerable success on the
             field but also strives to spread the love for cricket throughout
@@ -73,10 +74,9 @@ export default function Home({ blogs }: { blogs: any[] }) {
           </p>
         </div>
       </section>
-      <section className="flex w-full p-8 justify-between items-center h-full scroll">
-        <h1>
-          
-        </h1>
+      <section className="flex w-full p-8 justify-between items-center h-full snap-start">
+        <h1>Honors</h1>
+        <div className="flex w-full"></div>
       </section>
     </main>
   );
