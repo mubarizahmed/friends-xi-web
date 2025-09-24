@@ -44,12 +44,16 @@ export default function Home({ blogs }: { blogs: any[] }) {
               <SwiperSlide key={blog.sys.id}>
                 <div className="relative flex h-[calc(100vh-5rem)] w-full items-center justify-center">
                   <Image
-                    src={`https:${blog.fields.cover.fields.file.url}`} // Assuming this URL is correct
+                    // Assuming this URL is correct
+                    src={`https:${blog.fields.cover.fields.file.url}`}
                     alt={blog.fields.title}
-                    layout="fill"
-                    objectFit="cover"
-                    quality={100} // Optional, for better image quality
-                  />
+                    // Optional, for better image quality
+                    quality={100}
+                    fill
+                    sizes="100vw"
+                    style={{
+                      objectFit: "cover"
+                    }} />
                   <div className="absolute bottom-10 left-10 right-10 flex items-end justify-between gap-10">
                     <h1 className=" z-10 rounded bg-black bg-opacity-40 p-3 text-3xl text-white">
                       {blog.fields.title}
@@ -68,10 +72,16 @@ export default function Home({ blogs }: { blogs: any[] }) {
             <Image
               src="/logo.png"
               alt="Friends XI logo"
-              fill
-              objectFit="contain"
+              width="10"
+              height="10"
+              // fill
               className="p-24"
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+                width: "10px",
+                objectFit: "contain"
+              }} />
           </div>
           <div className="flex w-full flex-col items-start justify-center gap-4">
             <h1 className="text-5xl font-bold text-fxired">
@@ -94,7 +104,7 @@ export default function Home({ blogs }: { blogs: any[] }) {
         </section>
         <section className="flex flex-col h-full w-full snap-start items-center justify-between p-8">
           <h1 className="text-2xl">Honors</h1>
-          <VerticalTimeline className="flex w-full h-full ">
+          {/* <VerticalTimeline className="flex w-full h-full ">
             <VerticalTimelineElement
               className="vertical-timeline-element--work"
               contentStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
@@ -110,7 +120,7 @@ export default function Home({ blogs }: { blogs: any[] }) {
               </h3>
               <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
             </VerticalTimelineElement>
-          </VerticalTimeline>
+          </VerticalTimeline> */}
         </section>
       </main>
     </>
