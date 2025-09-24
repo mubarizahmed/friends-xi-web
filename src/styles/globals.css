@@ -1,6 +1,34 @@
-@tailwind base;
+@import "tailwindcss";
+
+@config "../../tailwind.config.ts";
+
+@theme {
+  --color-fxiblue: #2d377d;
+  --color-fxired: #9c1521;
+  --color-fxiorange: #e26526;
+
+  --color-fxinavy: #1b1d75;
+  --color-fximoonstone: #4da0ab;
+  --color-fxisafetyorange: #ff7900;
+  --color-fximagenta: #b81365;
+
+  --color-gold: #c9b037;
+  --color-silver: #d7d7d7;
+  --color-bronze: #6a3805;
+
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
+
+  --font-family-sans: Inter, sans-serif;
+  --font-family-header: Montserrat, sans-serif;
+}
+
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
@@ -8,6 +36,8 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+
+  /* set default radius to 0 */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -28,7 +58,7 @@
   );
   background-blend-mode: darken;
 }
-body {
+/* body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -36,7 +66,17 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-  @apply bg-gradient;
+  background-color: #f4e0c5;
+  background-image: linear-gradient(
+    62deg,
+    #f4e0c5 0%,
+    #c5b4fc 51%,
+    #f4e7e7 100%
+  );
+ 
+} */
+body {
+  @apply bg-black;
 }
 
 @layer utilities {
@@ -45,33 +85,93 @@ body {
   }
 }
 
-.bg-blur{
-  background: rgba( 255, 255, 255, 0.25 );
-box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-backdrop-filter: blur( 5px );
--webkit-backdrop-filter: blur( 5px );
-border-radius: 10px;
-border: 1px solid rgba( 255, 255, 255, 0.18 );
+.bg-blur {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
-
 
 /* Works on Firefox */
 * {
-	scrollbar-width: thin;
-	scrollbar-color:  #E26526 transparent;
-	/* scrollbar-gutter: stable; */
+  scrollbar-width: thin;
+  scrollbar-color: #e26526 transparent;
+  /* scrollbar-gutter: stable; */
 }
 /* Works on Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-	width: 0.75rem;
+  width: 0.75rem;
 }
 *::-webkit-scrollbar-track {
-	background: #0d0c1eff;
-	@apply bg-transparent;
+  background: transparent;
 }
 *::-webkit-scrollbar-thumb {
-	background-color: white;
-	border-radius: 20px;
-	border: 3px solid #201e3cff;
-	@apply bg-fxiorange border-white;
+  background-color: #e26526;
+  border-radius: 20px;
+  border: 3px solid white;
 }
+
+/* Swiper customizations */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 1 !important;
+  /* @apply bg-fximoonstone !important; */
+}
+
+.swiper-pagination-bullet-active {
+  background: #4da0ab !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #e26526;
+  /* background: rgba(255, 255, 255, 0.8); */
+  border-radius: 50%;
+  width: 44px !important;
+  height: 44px !important;
+}
+
+.swiper-navigation-icon {
+  height: 20px !important;
+  @apply text-white;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 10px;
+}
+
+/* Carousel height fix */
+.hero-carousel {
+  height: calc(100vh - 3.75rem) !important;
+}
+
+.hero-carousel .swiper {
+  height: 100% !important;
+}
+
+.hero-carousel .swiper-slide {
+  height: 100% !important;
+}
+
+/* Smooth scrolling */
+/* html {
+  scroll-behavior: smooth;
+}
+
+
+.font-header {
+  font-family: 'Montserrat', sans-serif;
+} */

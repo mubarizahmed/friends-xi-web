@@ -1,22 +1,55 @@
 import Image from "next/image";
 import Head from "next/head";
-import { Inter } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import { createClient } from "contentful";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import "react-vertical-timeline-component/style.min.css";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 // Import Swiper styles
 import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"] });
 
-export default function Home({ blogs }: { blogs: any[] }) {
+export default function Home({
+  blogs,
+  honors,
+}: {
+  blogs: any[];
+  honors: any[];
+}) {
+  // Handle case when no blogs are available
+  if (!blogs || blogs.length === 0) {
+    return (
+      <>
+        <Head>
+          <title>Friends XI e.V.</title>
+          <meta
+            name="description"
+            content="Friends XI e.V. - Bochum's premier cricket team"
+          />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <main className={`${inter.className}`}>
+          <section className="from-fxiblue to-fxired flex h-[calc(100vh-5rem)] w-full items-center justify-center bg-gradient-to-br">
+            <div className="text-center text-white">
+              <h1
+                className={`mb-4 text-4xl font-bold md:text-6xl ${montserrat.className}`}
+              >
+                Friends XI e.V.
+              </h1>
+              <p className="mb-8 text-xl">Bochum's Premier Cricket Team</p>
+              <div className="animate-pulse">Loading content...</div>
+            </div>
+          </section>
+        </main>
+      </>
+    );
+  }
   return (
     <>
       <Head>
@@ -27,100 +60,217 @@ export default function Home({ blogs }: { blogs: any[] }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main
-        className={`flex h-full min-h-screen w-full snap-mandatory flex-col items-center justify-between ${inter.className}`}
-      >
-        <section className="flex h-full w-full items-center justify-between">
+      <main className={`${inter.className}`}>
+        {/* Hero Section with Carousel */}
+        <section className="hero-carousel h-[calc(100vh-3.75rem)] w-full">
           <Swiper
+            modules={[Autoplay, Pagination, Navigation]}
             spaceBetween={0}
             slidesPerView={1}
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}
-            className="w-full"
-            pagination={{ clickable: true }}
-            autoplay={{ delay: 1000 }}
+            pagination={{
+              clickable: true,
+              dynamicBullets: true,
+            }}
+            navigation={true}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            loop={true}
+            className="h-full w-full [&_.swiper-button-next]:right-4 [&_.swiper-button-prev]:left-4"
+            style={{ height: "100%" }}
           >
             {blogs.map((blog: any) => (
               <SwiperSlide key={blog.sys.id}>
-                <div className="relative flex h-[calc(100vh-5rem)] w-full items-center justify-center">
+                <div className="relative h-[calc(100vh-3.75rem)] w-full">
                   <Image
-                    // Assuming this URL is correct
                     src={`https:${blog.fields.cover.fields.file.url}`}
                     alt={blog.fields.title}
-                    // Optional, for better image quality
-                    quality={100}
                     fill
                     sizes="100vw"
-                    style={{
-                      objectFit: "cover"
-                    }} />
-                  <div className="absolute bottom-10 left-10 right-10 flex items-end justify-between gap-10">
-                    <h1 className=" z-10 rounded bg-black bg-opacity-40 p-3 text-3xl text-white">
-                      {blog.fields.title}
-                    </h1>
-                    <button className="rounded bg-fxiblue p-3 font-header font-bold text-white">
-                      Read More
-                    </button>
+                    className="object-cover"
+                    style={{ objectFit: "cover" }}
+                  />
+                  <div className="bg-opacity-30 absolute inset-0" />
+                  <div className="absolute right-10 bottom-10 left-10 z-10">
+                    <div className="flex items-end justify-between gap-6">
+                      <h1
+                        className={`bg-opacity-60 rounded bg-black p-4 text-2xl font-bold text-white backdrop-blur-sm md:text-3xl ${montserrat.className}`}
+                      >
+                        {blog.fields.title}
+                      </h1>
+                      <button
+                        className={`bg-fximoonstone hover:bg-opacity-90 rounded-none px-6 py-3 font-bold text-black transition-colors ${montserrat.className}`}
+                        onClick={() => {
+                          // Add navigation to blog post here
+                          console.log("Navigate to blog:", blog.sys.id);
+                        }}
+                      >
+                        Read More
+                      </button>
+                    </div>
                   </div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
         </section>
-        <section className="snap-top scroll flex h-screen w-full items-center justify-between p-8 px-20 pt-28">
-          <div className="relative h-full w-full  py-20">
-            <Image
-              src="/logo.png"
-              alt="Friends XI logo"
-              width="10"
-              height="10"
-              // fill
-              className="p-24"
-              style={{
-                maxWidth: "100%",
-                height: "auto",
-                width: "10px",
-                objectFit: "contain"
-              }} />
-          </div>
-          <div className="flex w-full flex-col items-start justify-center gap-4">
-            <h1 className="text-5xl font-bold text-fxired">
-              We are Friends XI!
-            </h1>
-            <p className="text-l text-justify text-fxiblue">
-              Welcome to the official website of Friends XI e.V., Bochum&rsquo;s
-              premier cricket team and a proud member of the Deutsche Cricket
-              Union (DCU).
-            </p>
-            <p className="text-l text-justify text-fxiblue">
-              Born from a passion for the game and a deep sense of camaraderie,
-              we are a team that has not only achieved considerable success on
-              the field but also strives to spread the love for cricket
-              throughout Germany. As cricket takes its rightful place as an
-              Olympic sport, our commitment to expanding its reach and
-              popularity in our country has never been stronger.
-            </p>
+
+        {/* About Section */}
+        <section className="flex min-h-screen items-center justify-center px-8 py-16">
+          <div className="mx-auto w-full max-w-7xl">
+            <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+              {/* Logo Column */}
+              <div className="order-2 flex justify-center lg:order-1 lg:justify-start">
+                <div className="relative h-64 w-64 md:h-80 md:w-80 lg:h-96 lg:w-96">
+                  <Image
+                    src="/logo.png"
+                    alt="Friends XI logo"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 384px"
+                  />
+                </div>
+              </div>
+              {/* Text Column */}
+              <div className="sticky order-1 flex flex-col justify-center gap-6 lg:order-2">
+                <h1
+                  className={`text-fxisafetyorange text-4xl font-bold lg:text-5xl ${montserrat.className}`}
+                >
+                  We are Friends XI!
+                </h1>
+                <div className="space-y-4 text-white">
+                  <p className="text-lg leading-relaxed">
+                    Welcome to the official website of Friends XI e.V.,
+                    Bochum&apos;s premier cricket team and a proud member of the
+                    Deutsche Cricket Union (DCU).
+                  </p>
+                  <p className="text-lg leading-relaxed">
+                    Born from a passion for the game and a deep sense of
+                    camaraderie, we are a team that has not only achieved
+                    considerable success on the field but also strives to spread
+                    the love for cricket throughout Germany. As cricket takes
+                    its rightful place as an Olympic sport, our commitment to
+                    expanding its reach and popularity in our country has never
+                    been stronger.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
-        <section className="flex flex-col h-full w-full snap-start items-center justify-between p-8">
-          <h1 className="text-2xl">Honors</h1>
-          {/* <VerticalTimeline className="flex w-full h-full ">
-            <VerticalTimelineElement
-              className="vertical-timeline-element--work"
-              contentStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
-              contentArrowStyle={{
-                borderRight: "7px solid  rgb(33, 150, 243)",
-              }}
-              date="2011 - present"
-              iconStyle={{ background: "rgb(33, 150, 243)", color: "#fff" }}
-              // icon={<WorkIcon />}
+
+        {/* Honors Section */}
+        <section className="flex min-h-screen flex-col items-center justify-center bg-black px-8 py-16">
+          <div className="mx-auto max-w-4xl text-left">
+            <h2
+              className={`text-fximoonstone mb-12 text-3xl font-bold lg:text-4xl ${montserrat.className}`}
             >
-              <h3 className="vertical-timeline-element-title">
-                Creative Director
-              </h3>
-              <h4 className="vertical-timeline-element-subtitle">Miami, FL</h4>
-            </VerticalTimelineElement>
-          </VerticalTimeline> */}
+              Honors
+            </h2>
+            <div className="grid gap-8 text-center md:grid-cols-2 lg:grid-cols-3">
+              {/* Add your achievements here */}
+              {honors.map((honor) => (
+                <div
+                  key={honor.sys.id}
+                  // gold if type is championship, silver if runner-up, bronze if semi-finalist
+                  className={`flex-row gap-6 rounded-none bg-white p-2 shadow-md ${
+                    honor.fields.type === "champions"
+                      ? "border-gold border-l-8"
+                      : honor.fields.type === "runners-up"
+                        ? "border-silver border-l-8"
+                        : "border-bronze border-l-8"
+                  }`}
+                >
+                  <h3
+                    className={`text-fxiblue mb-2 text-xl font-semibold ${
+                      honor.fields.type === "champions"
+                        ? "text-gold"
+                        : honor.fields.type === "runners-up"
+                          ? "text-silver"
+                          : "text-bronze"
+                    }`}
+                  >
+                    {honor.fields.type.toUpperCase()}
+                  </h3>
+                  {/* logo of the honor if available */}
+                  {honor.fields.logo && (
+                    <div className="mb-4 flex justify-center">
+                      <div className="relative h-16 w-16">
+                        <Image
+                          src={`https:${honor.fields.logo.fields.file.url}`}
+                          alt={honor.fields.title}
+                          fill
+                          className="object-contain"
+                          sizes="64px"
+                        />
+                      </div>
+                    </div>
+                  )}
+                  <h3 className={`mb-2 text-xl font-semibold text-black`}>
+                    {honor.fields.title}
+                  </h3>
+                  <div className="flex grow justify-between px-2">
+                    <h3 className="mb-2 bg-black p-1 text-sm font-semibold text-white">
+                      {new Date(honor.fields.date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                      })}
+                    </h3>
+                    <h3 className="mb-2 bg-black p-1 text-sm font-semibold text-white">
+                      {honor.fields.format.toUpperCase()}
+                    </h3>
+                  </div>
+                  <p className="text-gray-600">{honor.fields.description}</p>
+                </div>
+              ))}
+              {/* Add more achievement cards as needed */}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section
+          id="contact"
+          className="bg-fximoonstone flex min-h-screen flex-col items-center justify-center px-8 py-16"
+        >
+          <div className="mx-auto max-w-4xl text-center">
+            <h2
+              className={`mb-8 text-3xl font-bold text-white lg:text-4xl ${montserrat.className}`}
+            >
+              Get In Touch
+            </h2>
+            <p className="mb-12 text-xl text-white opacity-90">
+              Ready to join Friends XI or have questions about our team?
+            </p>
+            <div className="grid gap-8 text-white md:grid-cols-2 lg:grid-cols-3">
+              <div className="bg-opacity-10 rounded-lg bg-white p-6 backdrop-blur-sm">
+                <h3
+                  className={`mb-4 text-xl font-semibold ${montserrat.className}`}
+                >
+                  Email Us
+                </h3>
+                <p className="opacity-90">info@friendsxi.de</p>
+              </div>
+              <div className="bg-opacity-10 rounded-lg bg-white p-6 backdrop-blur-sm">
+                <h3
+                  className={`mb-4 text-xl font-semibold ${montserrat.className}`}
+                >
+                  Location
+                </h3>
+                <p className="opacity-90">Bochum, Germany</p>
+              </div>
+              <div className="bg-opacity-10 rounded-lg bg-white p-6 backdrop-blur-sm">
+                <h3
+                  className={`mb-4 text-xl font-semibold ${montserrat.className}`}
+                >
+                  Follow Us
+                </h3>
+                <p className="opacity-90">Social Media Links</p>
+              </div>
+            </div>
+          </div>
         </section>
       </main>
     </>
@@ -128,17 +278,43 @@ export default function Home({ blogs }: { blogs: any[] }) {
 }
 
 export async function getStaticProps() {
-  const client = createClient({
-    space: process.env.CONTENTFUL_SPACE_ID ?? "",
-    accessToken: process.env.CONTENTFUL_ACCESS_KEY ?? "",
-  });
+  try {
+    const client = createClient({
+      space: process.env.CONTENTFUL_SPACE_ID ?? "",
+      accessToken: process.env.CONTENTFUL_ACCESS_KEY ?? "",
+    });
 
-  const res = await client.getEntries({ content_type: "blogs" });
+    const blogsRes = await client.getEntries({ content_type: "blogs" });
+    const blogs = blogsRes.items || [];
 
-  return {
-    props: {
-      blogs: res.items,
-    },
-    revalidate: 1,
-  };
+    const honorsRes = await client.getEntries({ content_type: "honors" });
+    const honors = honorsRes.items || [];
+
+    // sorthonors by date, most recent first
+    honors.sort((a, b) => {
+      const dateA = new Date(a.fields.date);
+      const dateB = new Date(b.fields.date);
+      console.log(dateA, dateB);
+      return dateB.getTime() - dateA.getTime();
+    });
+
+    return {
+      props: {
+        blogs,
+        honors,
+      },
+      revalidate: 1,
+    };
+  } catch (error) {
+    console.error("Error fetching blogs from Contentful:", error);
+
+    // Return empty array if Contentful fails
+    return {
+      props: {
+        blogs: [],
+        honors: [],
+      },
+      revalidate: 1,
+    };
+  }
 }
