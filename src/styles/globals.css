@@ -2,6 +2,8 @@
 
 @config "../../tailwind.config.ts";
 
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
 @theme {
   --color-fxiblue: #2d377d;
   --color-fxired: #9c1521;
@@ -22,15 +24,13 @@
     var(--tw-gradient-stops)
   );
 
-  --font-family-sans: Inter, sans-serif;
-  --font-family-header: Montserrat, sans-serif;
+  --font-family-sans: Roboto, sans-serif;
+  --font-family-header: Roboto, sans-serif;
 }
 
 /* @tailwind base;
 @tailwind components;
 @tailwind utilities; */
-
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -172,6 +172,55 @@ body {
 }
 
 
-.font-header {
-  font-family: 'Montserrat', sans-serif;
-} */
+
+/* 404 Page Animations */
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.3) rotate(-10deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05) rotate(5deg);
+  }
+  70% {
+    transform: scale(0.9) rotate(-2deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(77, 160, 171, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(77, 160, 171, 0.6),
+      0 0 30px rgba(77, 160, 171, 0.4);
+  }
+}
+
+.page-404 {
+  animation: bounce-in 0.8s ease-out;
+}
+
+.gif-container {
+  animation: float 3s ease-in-out infinite;
+}
+
+.glow-button {
+  animation: glow 2s ease-in-out infinite;
+}
