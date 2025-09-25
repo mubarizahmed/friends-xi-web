@@ -10,6 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <div className="absolute h-screen w-screen snap-y overflow-scroll">
         <Component {...pageProps} />
       </div>
+      <Analytics />
     </div>
   );
 }
