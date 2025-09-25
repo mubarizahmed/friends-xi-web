@@ -38,6 +38,11 @@ const Navbar = () => {
             NEWS
           </div>
         </Link>
+        <Link className="" href="/squad">
+          <div className="text-fximoonstone hover:text-fxisafetyorange flex w-18 justify-center p-1">
+            SQUAD
+          </div>
+        </Link>
         <Link className="" href="/fixtures">
           <div className="text-fximoonstone hover:text-fxisafetyorange flex w-18 justify-center p-1">
             FIXTURES
@@ -87,6 +92,12 @@ const Navbar = () => {
               href="/news"
             >
               NEWS
+            </Link>
+            <Link
+              className="hover:text-fxisafetyorange text-fximoonstone text-lg font-bold no-underline"
+              href="/squad"
+            >
+              SQUAD
             </Link>
             <Link
               className="hover:text-fxisafetyorange text-fximoonstone text-lg font-bold no-underline"

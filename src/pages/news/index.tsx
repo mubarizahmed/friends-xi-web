@@ -66,16 +66,12 @@ export default function NewsPage({ blogs }: { blogs: any[] }) {
       <main className={`font-family-sans min-h-screen bg-black pt-4`}>
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           {/* Header Section */}
-          <div className="mb-12 text-center">
+          <div className="mb-8 text-center">
             <h1
               className={`text-fximagenta mb-4 text-3xl font-bold md:text-5xl`}
             >
               Latest News & Updates
             </h1>
-            <p className="mx-auto max-w-3xl text-lg text-gray-600">
-              Stay informed with the latest match reports, team updates, and
-              cricket news from Friends XI e.V.
-            </p>
           </div>
 
           {/* Search and Filter Section */}

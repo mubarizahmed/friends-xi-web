@@ -52,6 +52,18 @@ const Footer = () => {
             <h3 className={`mb-6 text-2xl font-bold`}>Quick Links</h3>
             <div className="space-y-2">
               <a
+                href="/news"
+                className="block opacity-90 transition-opacity hover:opacity-100"
+              >
+                Latest News
+              </a>
+              <a
+                href="/squad"
+                className="block opacity-90 transition-opacity hover:opacity-100"
+              >
+                Our Squad
+              </a>
+              <a
                 href="#"
                 className="block opacity-90 transition-opacity hover:opacity-100"
               >
