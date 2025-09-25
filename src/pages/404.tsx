@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import { Montserrat } from "next/font/google";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
@@ -20,10 +21,12 @@ export default function Custom404() {
           <div className="mb-8">
             {/* Cricket-themed animated GIF */}
             <div className="gif-container bg-opacity-10 glow-button relative mx-auto mb-8 h-40 w-80 overflow-hidden rounded-lg bg-white backdrop-blur-sm">
-              <img
+              <Image
                 src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGhobW00bXhjbWdrOGRrMWgzbDlzOTJhYjVoM3JzMWsxaWF5dW05YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YyKPbc5OOTSQE/giphy.gif"
                 alt="Cricket ball animation"
-                className="h-full w-full rounded-lg object-cover"
+                fill
+                className="rounded-lg object-cover"
+                unoptimized // For GIFs from external domains
                 onError={(e) => {
                   // Fallback if GIF fails to load
                   const target = e.target as HTMLImageElement;
@@ -39,7 +42,7 @@ export default function Custom404() {
                 className="h-full w-full items-center justify-center text-6xl text-white"
                 style={{ display: "none" }}
               >
-                🏏 404 🏏
+                🏏
               </div>
             </div>
           </div>

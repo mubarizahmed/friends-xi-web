@@ -3,6 +3,7 @@
 @config "../../tailwind.config.ts";
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..900;1,100..900&display=swap");
 
 @theme {
   --color-fxiblue: #2d377d;
@@ -26,6 +27,7 @@
 
   --font-family-sans: Roboto, sans-serif;
   --font-family-header: Roboto, sans-serif;
+  --font-family-mono: Roboto Mono, monospace;
 }
 
 /* @tailwind base;
@@ -223,4 +225,13 @@ body {
 
 .glow-button {
   animation: glow 2s ease-in-out infinite;
+}
+
+/* Line clamp utility */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
