@@ -3,7 +3,10 @@ import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer id="contact" className="bg-fximoonstone px-8 py-16">
+    <footer
+      id="contact"
+      className="bg-fximoonstone font-family-sans px-8 py-16"
+    >
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Club Info */}
@@ -15,7 +18,7 @@ const Footer = () => {
             </p>
             <div className="mb-2 flex items-center gap-2">
               <span className="font-semibold">Founded:</span>
-              <span className="opacity-90">2015</span>
+              <span className="opacity-90">2012</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="font-semibold">Registration:</span>

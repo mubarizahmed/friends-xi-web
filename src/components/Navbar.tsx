@@ -53,7 +53,7 @@ const Navbar = () => {
         className="bg-fxisafetyorange font-header hover:bg-opacity-90 hidden rounded-none p-2 font-bold text-black md:block"
         onClick={goToContact}
       >
-        Contact
+        CONTACT
       </button>
       <div className="relative ml-4 block md:hidden">
         {toggleMenu ? (
@@ -80,25 +80,25 @@ const Navbar = () => {
               className="hover:text-fxisafetyorange text-fximoonstone text-lg font-bold no-underline"
               href="/"
             >
-              Home
+              HOME
             </Link>
             <Link
               className="hover:text-fxisafetyorange text-fximoonstone text-lg font-bold no-underline"
               href="/news"
             >
-              News
+              NEWS
             </Link>
             <Link
               className="hover:text-fxisafetyorange text-fximoonstone text-lg font-bold no-underline"
               href="/fixtures"
             >
-              Fixtures
+              FIXTURES
             </Link>
             <Link
               className="hover:text-fxisafetyorange text-fximoonstone text-lg font-bold no-underline"
               href="/stats"
             >
-              Stats
+              STATS
             </Link>
             <div className="block">
               <button
@@ -106,7 +106,7 @@ const Navbar = () => {
                 onClick={() => goToContact()}
                 className="bg-fxisafetyorange hover:bg-opacity-90 cursor-pointer rounded border-none px-4 py-2 text-lg font-bold text-black transition-colors duration-1000 ease-in-out outline-none"
               >
-                Contact
+                CONTACT
               </button>
             </div>
           </div>

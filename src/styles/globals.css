@@ -4,6 +4,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
 
 @theme {
   --color-fxiblue: #2d377d;
@@ -25,9 +26,9 @@
     var(--tw-gradient-stops)
   );
 
-  --font-family-sans: Roboto, sans-serif;
-  --font-family-header: Roboto, sans-serif;
-  --font-family-mono: Roboto Mono, monospace;
+  --font-family-sans: "Source Sans 3", sans-serif;
+  --font-family-mono: "Roboto Mono", monospace;
+  --font-family-header: "Pirata One", cursive, sans-serif;
 }
 
 /* @tailwind base;

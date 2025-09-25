@@ -113,9 +113,9 @@ export default function Home({
                       </h1>
                       <Link
                         href={`/news/${createSlug(blog.fields.title)}`}
-                        className={`bg-fximoonstone hover:bg-opacity-90 rounded-none px-6 py-3 font-bold text-black transition-colors`}
+                        className={`bg-fximoonstone hover:bg-opacity-90 font-family-mono rounded-none px-6 py-3 font-bold text-black transition-colors`}
                       >
-                        Read More
+                        READ MORE
                       </Link>
                     </div>
                   </div>
@@ -144,9 +144,9 @@ export default function Home({
               {/* Text Column */}
               <div className="sticky order-1 flex flex-col justify-center gap-6 lg:order-2">
                 <h1
-                  className={`text-fxisafetyorange text-4xl font-bold lg:text-5xl`}
+                  className={`text-fxisafetyorange font-family-mono text-4xl font-bold lg:text-5xl`}
                 >
-                  We are Friends XI!
+                  WE ARE FRIENDS XI!
                 </h1>
                 <div className="space-y-4 text-white">
                   <p className="text-lg leading-relaxed">
@@ -173,9 +173,9 @@ export default function Home({
         <section className="flex min-h-screen flex-col items-center justify-center bg-black px-8 py-16">
           <div className="mx-auto max-w-4xl text-left">
             <h2
-              className={`text-fximoonstone mb-12 text-3xl font-bold lg:text-4xl`}
+              className={`text-fximoonstone font-family-mono mb-12 text-3xl font-bold lg:text-4xl`}
             >
-              Honors
+              HONORS
             </h2>
             <div className="grid gap-8 text-center md:grid-cols-2 lg:grid-cols-3">
               {/* Add your achievements here */}
@@ -192,7 +192,7 @@ export default function Home({
                   }`}
                 >
                   <h3
-                    className={`text-fxiblue mb-2 text-xl font-semibold ${
+                    className={`text-fxiblue mb-2 text-xl font-black ${
                       honor.fields.type === "champions"
                         ? "text-gold"
                         : honor.fields.type === "runners-up"
@@ -219,18 +219,19 @@ export default function Home({
                   <h3 className={`mb-2 text-xl font-semibold text-black`}>
                     {honor.fields.title}
                   </h3>
-                  <div className="flex grow justify-between px-2">
-                    <h3 className="mb-2 bg-black p-1 text-sm font-semibold text-white">
-                      {new Date(honor.fields.date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                      })}
+                  <div className="font-family-mono flex grow justify-between">
+                    <h3 className="bg-black p-1 px-2 text-sm font-semibold text-white">
+                      {new Date(honor.fields.date)
+                        .toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "short",
+                        })
+                        .toUpperCase()}
                     </h3>
-                    <h3 className="mb-2 bg-black p-1 text-sm font-semibold text-white">
+                    <h3 className="bg-black p-1 px-2 text-sm font-semibold text-white">
                       {honor.fields.format.toUpperCase()}
                     </h3>
                   </div>
-                  <p className="text-gray-600">{honor.fields.description}</p>
                 </div>
               ))}
               {/* Add more achievement cards as needed */}
